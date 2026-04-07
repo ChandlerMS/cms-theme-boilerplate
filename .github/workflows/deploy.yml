@@ -15,7 +15,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create HubSpot Config File
+        run: |
+          cat > hubspot.config.yml << EOF
+          defaultPortal: ${{ secrets.hubspot_portal_id }}
+          portals:
+            - portalId: ${{ secrets.hubspot_portal_id }}
+              authType: personalaccesskey
+              personalAccessKey: ${{ secrets.hubspot_personal_access_key }}
+          EOF
+
       - name: Deploy to HubSpot
-        run: npx --yes --package=@hubspot/cli@latest hs upload src cms-theme-boilerplate --account ${{ secrets.hubspot_portal_id }} --use-env
-        env:
-          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.hubspot_personal_access_key }}
+        run: npx --yes --package=@hubspot/cli@latest hs upload src cms-theme-boilerplate --account ${{ secrets.hubspot_portal_id }}
