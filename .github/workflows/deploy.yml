@@ -23,4 +23,4 @@ jobs:
             '${{ secrets.hubspot_personal_access_key }}' > hubspot.config.yml
 
       - name: Deploy to HubSpot
-        run: npx --yes --package=@hubspot/cli@latest hs upload src cms-theme-boilerplate --account ${{ secrets.hubspot_portal_id }}
+        run: npx --yes --package=@hubspot/cli@5 hs upload src cms-theme-boilerplate --account ${{ secrets.hubspot_portal_id }}
