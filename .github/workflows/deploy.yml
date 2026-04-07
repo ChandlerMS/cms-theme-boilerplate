@@ -16,7 +16,6 @@ jobs:
           node-version: '20'
 
       - name: Deploy to HubSpot
-        run: npx --yes --package=@hubspot/cli@latest hs upload src cms-theme-boilerplate --use-env
+        run: npx --yes --package=@hubspot/cli@latest hs upload src cms-theme-boilerplate --account ${{ secrets.hubspot_portal_id }} --use-env
         env:
-          HUBSPOT_PORTAL_ID: ${{ secrets.hubspot_portal_id }}
           HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.hubspot_personal_access_key }}
